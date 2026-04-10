@@ -1,0 +1,26 @@
+---
+const message = encodeURIComponent(
+	"Hola Califorma, vengo de su sitio web y me interesa cotizar un proyecto."
+);
+const whatsappUrl = `https://wa.me/5210000000000?text=${message}`;
+---
+
+<a
+	href={whatsappUrl}
+	target="_blank"
+	rel="noopener noreferrer"
+	aria-label="Contactar por WhatsApp"
+	class="fixed bottom-6 right-6 z-50 inline-flex h-15 w-15 touch-manipulation items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-[#25D366]/30 motion-safe:animate-pulse"
+>
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 24 24"
+		fill="currentColor"
+		class="h-8 w-8"
+		aria-hidden="true"
+	>
+		<path
+			d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2C6.55 2 2.1 6.45 2.1 11.93c0 1.75.46 3.46 1.33 4.97L2 22l5.26-1.38a9.9 9.9 0 0 0 4.77 1.22h.01c5.48 0 9.93-4.45 9.93-9.93a9.84 9.84 0 0 0-2.92-7Zm-7.01 15.25h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.27-4.38c0-4.54 3.69-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.41a8.16 8.16 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.22 8.23Zm4.51-6.17c-.25-.13-1.47-.73-1.7-.81-.23-.08-.39-.13-.56.13-.16.25-.64.81-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.5.12-.12.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.49-.4-.42-.56-.43h-.47c-.16 0-.43.06-.66.31-.23.25-.87.85-.87 2.06 0 1.22.89 2.39 1.01 2.56.12.16 1.75 2.67 4.23 3.74.59.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.23-.16-.48-.29Z"
+		/>
+	</svg>
+</a>

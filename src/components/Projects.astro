@@ -1,129 +1,86 @@
 ---
-const proyectos = [
-	{
-		id: "01",
-		titulo: "Dado progresivo #1",
-		categoria: "Herramental",
-		descripcion:
-			"Herramental desarrollado para operaciones repetitivas con enfoque en precision y continuidad.",
-		video: "/assets/proyectos/pieza-varias.mp4",
-		poster: "/assets/proyectos/dado-progresivo-1-poster.png",
-	},
-	{
-		id: "02",
-		titulo: "Rodillos para formado de tubo",
-		categoria: "Formado industrial",
-		descripcion:
-			"Componentes disenados para procesos de formado con control dimensional y desempeno continuo.",
-		image: "/assets/proyectos/rodillos-formado.jpg",
-	},
-	{
-		id: "03",
-		titulo: "Piezas varias",
-		categoria: "Manufactura",
-		descripcion:
-			"Manufactura de componentes especiales para diferentes requerimientos de produccion industrial.",
-		image: "/assets/proyectos/piezas-varias.jpeg",
-	},
-	{
-		id: "04",
-		titulo: "Flechas",
-		categoria: "Torneado CNC",
-		descripcion:
-			"Mecanizado de flechas y elementos rotativos para equipos y sistemas industriales.",
-		image: "/assets/proyectos/flechas.jpg",
-	},
-	{
-		id: "05",
-		titulo: "Dado progresivo #2",
-		categoria: "Estampado",
-		descripcion:
-			"Solucion de herramental para procesos de estampado con enfoque en estabilidad operativa.",
-		image: "/assets/proyectos/dado-progresivo-2.jpeg",
-	},
-];
+import { getUI, type Lang } from "../i18n/ui";
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const ui = getUI(lang);
+const t = ui.projects;
+const anchors = ui.anchors;
 ---
 
-<section id="proyectos" class="bg-slate-50">
+<section id={anchors.projects} class="bg-slate-50">
 	<div class="section-shell">
-		<p class="eyebrow">Proyectos</p>
-		<h2 class="section-title">Proyectos</h2>
-		<p class="section-copy">
-			Ejemplos de trabajo para distintas aplicaciones industriales.
-		</p>
+		<p class="eyebrow">{t.eyebrow}</p>
+		<h2 class="section-title">{t.title}</h2>
+		<p class="section-copy">{t.description}</p>
 
 		<div class="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-			{
-				proyectos.map((proyecto) => (
-					<article class="panel-light relative overflow-hidden p-0">
-						<div class="absolute inset-x-0 top-0 h-1 bg-orange-500/80"></div>
+			{t.items.map((project) => (
+				<article class="panel-light relative overflow-hidden p-0">
+					<div class="absolute inset-x-0 top-0 h-1 bg-orange-500/80"></div>
 
-						{proyecto.video ? (
-							<div class="group relative aspect-[16/10] overflow-hidden border-b border-slate-200 bg-slate-200">
-								<img
-									src={proyecto.poster}
-									alt={proyecto.titulo}
-									loading="lazy"
-									class="h-full w-full object-cover transition duration-300 group-hover:scale-[1.02] group-hover:opacity-0"
-									onerror="this.parentElement?.classList.add('hidden'); this.closest('article')?.querySelector('[data-project-fallback]')?.classList.remove('hidden');"
-								/>
-								<video
-									src={proyecto.video}
-									poster={proyecto.poster}
-									autoplay
-									muted
-									loop
-									playsinline
-									class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-0 transition duration-300 group-hover:opacity-100"
-									onerror="this.parentElement?.classList.add('hidden'); this.closest('article')?.querySelector('[data-project-fallback]')?.classList.remove('hidden');"
-								></video>
-							</div>
-						) : proyecto.image ? (
-							<div class="aspect-[16/10] overflow-hidden border-b border-slate-200 bg-slate-200">
-								<img
-									src={proyecto.image}
-									alt={proyecto.titulo}
-									loading="lazy"
-									class="h-full w-full object-cover"
-									onerror="this.parentElement?.classList.add('hidden'); this.closest('article')?.querySelector('[data-project-fallback]')?.classList.remove('hidden');"
-								/>
-							</div>
-						) : null}
+					{project.video ? (
+						<div class="group relative aspect-[16/10] overflow-hidden border-b border-slate-200 bg-slate-200">
+							<img
+								src={project.poster}
+								alt={project.title}
+								loading="lazy"
+								class="h-full w-full object-cover transition duration-300 group-hover:scale-[1.02] group-hover:opacity-0"
+								onerror="this.parentElement?.classList.add('hidden'); this.closest('article')?.querySelector('[data-project-fallback]')?.classList.remove('hidden');"
+							/>
+							<video
+								src={project.video}
+								poster={project.poster}
+								autoplay
+								muted
+								loop
+								playsinline
+								class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-0 transition duration-300 group-hover:opacity-100"
+								onerror="this.parentElement?.classList.add('hidden'); this.closest('article')?.querySelector('[data-project-fallback]')?.classList.remove('hidden');"
+							></video>
+						</div>
+					) : project.image ? (
+						<div class="aspect-[16/10] overflow-hidden border-b border-slate-200 bg-slate-200">
+							<img
+								src={project.image}
+								alt={project.title}
+								loading="lazy"
+								class="h-full w-full object-cover"
+								onerror="this.parentElement?.classList.add('hidden'); this.closest('article')?.querySelector('[data-project-fallback]')?.classList.remove('hidden');"
+							/>
+						</div>
+					) : null}
 
-						<div
-							class:list={[
-								"project-media hidden aspect-[16/10] items-end overflow-hidden border-b border-slate-200 bg-[linear-gradient(135deg,#0f172a,#1e293b_58%,#f97316_180%)] p-6 text-white",
-								!proyecto.image && "flex",
-							]}
-							data-project-fallback
-						>
+					<div
+						class:list={[
+							"project-media hidden aspect-[16/10] items-end overflow-hidden border-b border-slate-200 bg-[linear-gradient(135deg,#0f172a,#1e293b_58%,#f97316_180%)] p-6 text-white",
+							!project.image && "flex",
+						]}
+						data-project-fallback
+					>
 							<div>
 								<p class="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-orange-400">
-									Proyecto {proyecto.id}
+									{t.itemLabel} {project.id}
 								</p>
-								<p class="mt-3 max-w-xs text-xl font-semibold leading-tight">
-									{proyecto.titulo}
-								</p>
+								<p class="mt-3 max-w-xs text-xl font-semibold leading-tight">{project.title}</p>
 							</div>
-						</div>
+					</div>
 
-						<div class="p-7 sm:p-8">
-							<p class="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-slate-500">
-								Proyecto {proyecto.id}
-							</p>
-							<h3 class="mt-5 text-2xl font-semibold tracking-tight text-slate-950">
-								{proyecto.titulo}
-							</h3>
-							<p class="mt-3 text-sm font-medium uppercase tracking-[0.18em] text-orange-600">
-								{proyecto.categoria}
-							</p>
-							<p class="mt-5 text-sm leading-7 text-slate-600">
-								{proyecto.descripcion}
-							</p>
-						</div>
-					</article>
-				))
-			}
+					<div class="p-7 sm:p-8">
+						<p class="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-slate-500">
+							{t.itemLabel} {project.id}
+						</p>
+						<h3 class="mt-5 text-2xl font-semibold tracking-tight text-slate-950">{project.title}</h3>
+						<p class="mt-3 text-sm font-medium uppercase tracking-[0.18em] text-orange-600">
+							{project.category}
+						</p>
+						<p class="mt-5 text-sm leading-7 text-slate-600">{project.description}</p>
+					</div>
+				</article>
+			))}
 		</div>
 	</div>
 </section>

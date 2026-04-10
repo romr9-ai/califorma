@@ -1,81 +1,201 @@
-<section id="contacto" class="bg-slate-950 text-white">
-	<div class="section-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-14">
+---
+import { getUI, type Lang } from "../i18n/ui";
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const ui = getUI(lang);
+const t = ui.contact;
+const anchors = ui.anchors;
+---
+
+<section id={anchors.contact} class="bg-slate-950 text-white">
+	<div class="section-shell grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-start lg:gap-14">
 		<div class="lg:pt-4">
-			<p class="eyebrow">Contacto</p>
+			<p class="eyebrow">{t.eyebrow}</p>
 			<h2 class="mt-5 max-w-xl text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl lg:text-[2.8rem] lg:leading-[1.05]">
-				Solicita tu cotizacion
+				{t.title}
 			</h2>
-			<p class="mt-4 max-w-xl text-base leading-7 text-slate-300">
-				Cuentanos sobre tu proyecto y te responderemos lo antes posible.
-			</p>
+			<p class="mt-4 max-w-xl text-base leading-7 text-slate-300">{t.description}</p>
 			<p class="mt-4 text-sm text-slate-400">
-				Tambien puedes escribirnos a
+				{t.emailLabel}
+				{" "}
 				<a href="mailto:info@califorma.com.mx" class="font-medium text-orange-400 hover:text-orange-300">
 					info@califorma.com.mx
 				</a>
 			</p>
+			<p class="mt-2 text-sm text-slate-400">
+				<span class="font-medium text-slate-200">{t.locationLabel}:</span>
+				{" "}
+				{t.locationValue}
+			</p>
+
 			<div class="mt-10 grid gap-4 sm:grid-cols-2">
-				<div class="rounded-2xl border border-white/10 bg-white/5 p-5">
-					<p class="text-xs uppercase tracking-[0.22em] text-slate-400">Atencion</p>
-					<p class="mt-3 text-lg font-semibold text-white">Respuesta enfocada a proyectos industriales</p>
+				{t.highlights.map((highlight) => (
+					<div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+						<p class="text-xs uppercase tracking-[0.22em] text-slate-400">{highlight.label}</p>
+						<p class="mt-3 text-lg font-semibold text-white">{highlight.value}</p>
+					</div>
+				))}
+			</div>
+
+			<div class="mt-8 overflow-hidden rounded-2xl border border-white/10 shadow-[0_20px_50px_-32px_rgba(0,0,0,0.65)]">
+				<div class="border-b border-white/10 bg-white/5 px-5 py-4">
+					<p class="text-sm font-semibold text-white">{t.mapCardTitle}</p>
+					<p class="mt-1 text-sm text-slate-400">{t.mapCardDescription}</p>
+					<a
+						href="https://www.google.com/maps/search/?api=1&query=Califorma%20CNC%2C%20Mexicali%2C%20Baja%20California"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="mt-3 inline-flex text-sm font-medium text-orange-400 transition hover:text-orange-300"
+					>
+						{t.mapCardLink}
+					</a>
 				</div>
-				<div class="rounded-2xl border border-white/10 bg-white/5 p-5">
-					<p class="text-xs uppercase tracking-[0.22em] text-slate-400">Cobertura</p>
-					<p class="mt-3 text-lg font-semibold text-white">Piezas, herramentales y procesos especiales</p>
+				<div class="aspect-[16/10] w-full">
+					<iframe
+						title={t.mapTitle}
+						src="https://www.google.com/maps?q=Califorma%20CNC%2C%20Mexicali%2C%20Baja%20California&z=17&output=embed"
+						loading="lazy"
+						referrerpolicy="no-referrer-when-downgrade"
+						class="h-full w-full border-0"
+						allowfullscreen
+					></iframe>
 				</div>
 			</div>
 		</div>
 
-		<form class="rounded-[30px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.04))] p-8 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.8)] sm:p-10">
+		<form
+			class="rounded-[30px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.04))] p-8 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.8)] sm:p-10"
+			data-contact-form
+		>
 			<div class="grid gap-5 sm:grid-cols-2">
 				<label class="block">
-					<span class="mb-2 block text-sm font-medium text-slate-200">Nombre</span>
+					<span class="mb-2 block text-sm font-medium text-slate-200">{t.form.name}</span>
 					<input
 						type="text"
-						placeholder="Tu nombre"
+						placeholder={t.form.namePlaceholder}
 						class="w-full rounded-2xl border border-white/12 bg-slate-900/90 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-orange-400"
 					/>
 				</label>
 				<label class="block">
-					<span class="mb-2 block text-sm font-medium text-slate-200">Apellido</span>
+					<span class="mb-2 block text-sm font-medium text-slate-200">{t.form.lastName}</span>
 					<input
 						type="text"
-						placeholder="Tu apellido"
+						placeholder={t.form.lastNamePlaceholder}
 						class="w-full rounded-2xl border border-white/12 bg-slate-900/90 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-orange-400"
 					/>
 				</label>
 				<label class="block">
-					<span class="mb-2 block text-sm font-medium text-slate-200">Email</span>
+					<span class="mb-2 block text-sm font-medium text-slate-200">{t.form.email}</span>
 					<input
 						type="email"
-						placeholder="correo@empresa.com"
+						placeholder={t.form.emailPlaceholder}
 						class="w-full rounded-2xl border border-white/12 bg-slate-900/90 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-orange-400"
 					/>
 				</label>
 				<label class="block">
-					<span class="mb-2 block text-sm font-medium text-slate-200">Telefono</span>
+					<span class="mb-2 block text-sm font-medium text-slate-200">{t.form.phone}</span>
 					<input
 						type="tel"
-						placeholder="(000) 000 0000"
+						placeholder={t.form.phonePlaceholder}
 						class="w-full rounded-2xl border border-white/12 bg-slate-900/90 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-orange-400"
 					/>
 				</label>
 			</div>
 			<label class="mt-5 block">
-				<span class="mb-2 block text-sm font-medium text-slate-200">Mensaje</span>
+				<span class="mb-2 block text-sm font-medium text-slate-200">{t.form.message}</span>
 				<textarea
 					rows="6"
-					placeholder="Describe tu proyecto, materiales, cantidades o requerimientos."
+					placeholder={t.form.messagePlaceholder}
 					class="w-full rounded-2xl border border-white/12 bg-slate-900/90 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-orange-400"
 				></textarea>
 			</label>
 
 			<button
-				type="button"
-				class="mt-7 inline-flex rounded-full bg-orange-500 px-7 py-3.5 text-sm font-semibold text-white shadow-[0_16px_40px_-18px_rgba(249,115,22,0.9)] transition hover:bg-orange-400"
+				type="submit"
+				class="mt-7 inline-flex items-center gap-3 rounded-full bg-orange-500 px-7 py-3.5 text-sm font-semibold text-white shadow-[0_16px_40px_-18px_rgba(249,115,22,0.9)] transition hover:bg-orange-400 disabled:cursor-not-allowed disabled:opacity-100"
+				data-submit-button
+				data-label-default={t.form.submit}
+				data-label-sending={t.form.sending}
+				data-label-success={t.form.success}
 			>
-				Enviar solicitud
+				<span data-button-text>{t.form.submit}</span>
 			</button>
+			<p
+				class="mt-4 hidden text-sm font-medium text-green-300"
+				data-form-feedback
+				data-feedback-success={t.form.successNote}
+				aria-live="polite"
+			></p>
 		</form>
 	</div>
 </section>
+
+<script>
+	const forms = document.querySelectorAll("[data-contact-form]");
+
+	forms.forEach((form) => {
+		if (!(form instanceof HTMLFormElement)) return;
+
+		const submitButton = form.querySelector("[data-submit-button]");
+		const buttonText = form.querySelector("[data-button-text]");
+		const feedback = form.querySelector("[data-form-feedback]");
+
+		if (
+			!(submitButton instanceof HTMLButtonElement) ||
+			!(buttonText instanceof HTMLElement) ||
+			!(feedback instanceof HTMLElement)
+		) return;
+
+		const defaultLabel = submitButton.dataset.labelDefault ?? "Solicitar cotizacion";
+		const sendingLabel = submitButton.dataset.labelSending ?? "Enviando...";
+		const successLabel = submitButton.dataset.labelSuccess ?? "Mensaje enviado";
+		const successFeedback = feedback.dataset.feedbackSuccess ?? "Gracias. Hemos recibido tu solicitud.";
+		const spinnerMarkup =
+			'<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3"></circle><path class="opacity-90" fill="currentColor" d="M12 2a10 10 0 0 1 10 10h-3A7 7 0 0 0 12 5V2Z"></path></svg>';
+
+		form.addEventListener("submit", (event) => {
+			event.preventDefault();
+
+			submitButton.disabled = true;
+			feedback.classList.add("hidden");
+			feedback.textContent = "";
+			submitButton.classList.remove("bg-green-500", "hover:bg-green-400");
+			submitButton.classList.add("bg-orange-500", "hover:bg-orange-400");
+			buttonText.textContent = sendingLabel;
+
+			if (!submitButton.querySelector("[data-button-spinner]")) {
+				submitButton.insertAdjacentHTML(
+					"afterbegin",
+					`<span data-button-spinner class="inline-flex">${spinnerMarkup}</span>`
+				);
+			}
+
+			window.setTimeout(() => {
+				form.reset();
+				submitButton.disabled = true;
+				submitButton.classList.remove("bg-orange-500", "hover:bg-orange-400");
+				submitButton.classList.add("bg-green-500", "hover:bg-green-400");
+
+				const spinner = submitButton.querySelector("[data-button-spinner]");
+				if (spinner) spinner.remove();
+
+				buttonText.textContent = `¡${successLabel}!`;
+				feedback.textContent = successFeedback;
+				feedback.classList.remove("hidden");
+
+				window.setTimeout(() => {
+					submitButton.disabled = false;
+					submitButton.classList.remove("bg-green-500", "hover:bg-green-400");
+					submitButton.classList.add("bg-orange-500", "hover:bg-orange-400");
+					buttonText.textContent = defaultLabel;
+					feedback.classList.add("hidden");
+					feedback.textContent = "";
+				}, 1800);
+			}, 2000);
+		});
+	});
+</script>

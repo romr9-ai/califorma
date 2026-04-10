@@ -1,0 +1,30 @@
+---
+import About from "../../components/About.astro";
+import Contact from "../../components/Contact.astro";
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import Hero from "../../components/Hero.astro";
+import Machinery from "../../components/Machinery.astro";
+import Projects from "../../components/Projects.astro";
+import Services from "../../components/Services.astro";
+import TrustBanner from "../../components/TrustBanner.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+---
+
+<MainLayout
+	title="Califorma | CNC Machining Landing Page"
+	description="Califorma provides CNC machining services for industrial clients who require precision and fast quote response."
+	lang="en"
+>
+	<Header lang="en" />
+	<main>
+		<Hero lang="en" />
+		<TrustBanner lang="en" />
+		<Services lang="en" />
+		<About lang="en" />
+		<Machinery lang="en" />
+		<Projects lang="en" />
+		<Contact lang="en" />
+	</main>
+	<Footer lang="en" />
+</MainLayout>
