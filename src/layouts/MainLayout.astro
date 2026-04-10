@@ -1,0 +1,29 @@
+---
+import "../styles/global.css";
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = "Califorma | Maquinado CNC de Precision",
+	description = "Landing corporativa de Califorma para servicios de maquinado CNC, fabricacion de piezas y solicitud de cotizaciones.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+	</head>
+	<body class="page-shell min-h-screen">
+		<slot />
+	</body>
+</html>

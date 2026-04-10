@@ -1,0 +1,83 @@
+---
+// 1. Organizamos los datos para que el HTML quede limpio
+const proyectos = [
+  {
+    id: "01",
+    titulo: "Dado progresivo #1",
+    desc: "Herramental desarrollado para operaciones repetitivas con enfoque en precisión y continuidad.",
+    image: "/assets/proyectos/dado-1.jpg", // Asegúrate de tener estas rutas
+    type: "image"
+  },
+  {
+    id: "02",
+    titulo: "Rodillos para formado de tubo",
+    desc: "Componentes diseñados para procesos de formado con control dimensional y desempeño continuo.",
+    image: "/assets/proyectos/rodillos.jpg",
+    type: "image"
+  },
+  {
+    id: "03",
+    titulo: "Piezas de Alta Precisión",
+    desc: "Manufactura de componentes especiales con acabados industriales de alta calidad.",
+    video: "/assets/proyectos/video-pieza.mp4", // Aquí va tu video
+    type: "video"
+  },
+  {
+    id: "04",
+    titulo: "Flechas Industriales",
+    desc: "Mecanizado de flechas y elementos rotativos para equipos y sistemas industriales.",
+    image: "/assets/proyectos/flechas.jpg",
+    type: "image"
+  },
+  {
+    id: "05",
+    titulo: "Dado progresivo #2",
+    desc: "Solución de herramental para procesos de estampado con enfoque en estabilidad operativa.",
+    image: "/assets/proyectos/dado-2.jpg",
+    type: "image"
+  }
+];
+---
+
+<section id="proyectos" class="py-24 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-6">
+    <p class="text-sm font-bold uppercase tracking-widest text-orange-600">Portafolio</p>
+    <h2 class="mt-2 text-4xl font-bold text-slate-950">Casos de Éxito</h2>
+    <p class="mt-4 text-lg text-slate-600 max-w-2xl">
+      Ejemplos de piezas y herramentales fabricados con los más altos estándares de calidad en Mexicali.
+    </p>
+
+    <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {proyectos.map((proy) => (
+        <article class="group overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all hover:shadow-xl">
+          <div class="aspect-video overflow-hidden bg-slate-200">
+            {proy.type === "video" ? (
+              <video 
+                src={proy.video} 
+                autoplay 
+                muted 
+                loop 
+                playsinline 
+                class="h-full w-full object-cover"
+              />
+            ) : (
+              <img 
+                src={proy.image} 
+                alt={proy.titulo} 
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+            )}
+          </div>
+          
+          <div class="p-6">
+            <span class="text-xs font-bold uppercase text-orange-600">Proyecto {proy.id}</span>
+            <h3 class="mt-2 text-xl font-bold text-slate-950">{proy.titulo}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">
+              {proy.desc}
+            </p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

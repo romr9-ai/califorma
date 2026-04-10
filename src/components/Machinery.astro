@@ -1,0 +1,86 @@
+---
+const maquinas = [
+  {
+    nombre: "Centro de Maquinado HAAS VF0E",
+    tipo: "Mecanizado Vertical",
+    especificaciones: [
+      { etiqueta: "Dimensiones (XYZ)", valor: '30" x 16" x 20"' }
+    ],
+    descripcion: "Centro de maquinado versátil para piezas de precisión con tolerancias exigentes.",
+    destacada: true // Para mantener ese estilo "dark" en la primera
+  },
+  {
+    nombre: "Torno CNC HARDINGE SV200",
+    tipo: "Torneado CNC",
+    especificaciones: [
+      { etiqueta: "Volteo", valor: '10"' },
+      { etiqueta: "Largo", valor: '14"' }
+    ],
+    descripcion: "Torno CNC ideal para operaciones de alta precisión y repetibilidad en piezas cilíndricas.",
+    destacada: false
+  },
+  {
+    nombre: "Torno CNC HAAS SL30",
+    tipo: "Torneado CNC",
+    especificaciones: [
+      { etiqueta: "Volteo", valor: '17"' },
+      { etiqueta: "Largo", valor: '34"' }
+    ],
+    descripcion: "Capacidad robusta para piezas de mayor longitud y demandas continuas de producción.",
+    destacada: false
+  },
+  {
+    nombre: "Electroerosión de hilo CHMER G32S",
+    tipo: "WEDM",
+    especificaciones: [
+      { etiqueta: "Dimensiones (XYZ)", valor: '14" x 9.8" x 8.6"' }
+    ],
+    descripcion: "Corte por hilo para perfiles complejos y materiales de alta dureza con acabados espejo.",
+    destacada: false
+  }
+];
+---
+
+<section id="maquinaria" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <p class="text-sm font-bold uppercase tracking-widest text-orange-600">Maquinaria</p>
+    <h2 class="text-4xl font-bold text-slate-950 mt-2">Capacidad Instalada</h2>
+    <p class="mt-4 text-lg text-slate-600 max-w-2xl">
+      Contamos con equipo de vanguardia para garantizar precisión y tiempos de entrega competitivos en cada proyecto.
+    </p>
+
+    <div class="mt-14 grid gap-6 md:grid-cols-2">
+      {maquinas.map((m) => (
+        <article class={m.destacada 
+          ? "relative overflow-hidden rounded-3xl bg-slate-900 p-8 text-white shadow-2xl" 
+          : "rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-hover hover:shadow-md"
+        }>
+          {m.destacada && (
+            <div class="absolute inset-y-0 right-0 w-24 bg-[linear-gradient(180deg,rgba(249,115,22,0.15),transparent)]"></div>
+          )}
+          
+          <p class={`text-[0.7rem] font-bold uppercase tracking-[0.2em] ${m.destacada ? 'text-orange-400' : 'text-orange-600'}`}>
+            Ficha Técnica
+          </p>
+          
+          <h3 class="mt-6 text-2xl font-bold tracking-tight">{m.nombre}</h3>
+          
+          <div class="mt-8 grid grid-cols-2 gap-4">
+            {m.especificaciones.map((esp) => (
+              <div class={`rounded-2xl p-4 border ${m.destacada ? 'border-slate-700 bg-slate-800/50' : 'border-slate-100 bg-slate-50'}`}>
+                <p class={`text-[0.65rem] uppercase tracking-wider ${m.destacada ? 'text-slate-400' : 'text-slate-500'}`}>
+                  {esp.etiqueta}
+                </p>
+                <p class="mt-1 text-lg font-semibold">{esp.valor}</p>
+              </div>
+            ))}
+          </div>
+
+          <p class={`mt-6 text-sm leading-relaxed ${m.destacada ? 'text-slate-300' : 'text-slate-600'}`}>
+            {m.descripcion}
+          </p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
