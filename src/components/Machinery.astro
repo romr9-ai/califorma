@@ -21,10 +21,10 @@ const anchors = ui.anchors;
 			{t.items.map((machine) => (
 				<article
 					class:list={[
-						"group overflow-hidden rounded-[28px] border shadow-[0_24px_60px_-42px_rgba(15,23,42,0.35)]",
+						"group overflow-hidden rounded-sm border shadow-[4px_4px_0px_0px_rgba(15,23,42,1)]",
 						machine.highlighted
 							? "border-slate-800 bg-slate-950 text-white"
-							: "border-slate-200/80 bg-white text-slate-950",
+							: "border-slate-800 bg-white text-slate-950",
 					]}
 				>
 					<div
@@ -66,10 +66,10 @@ const anchors = ui.anchors;
 							{machine.specs.map((spec) => (
 								<div
 									class:list={[
-										"rounded-2xl border p-4",
+										"rounded-sm border p-4",
 										machine.highlighted
 											? "border-slate-700 bg-slate-800/50"
-											: "border-slate-200 bg-slate-50",
+											: "border-slate-800 bg-slate-50",
 									]}
 								>
 									<p

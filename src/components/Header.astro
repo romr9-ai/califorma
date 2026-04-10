@@ -11,21 +11,21 @@ const t = ui.header;
 const anchors = ui.anchors;
 ---
 
-<header class="sticky top-0 z-50 border-b border-slate-800/60 bg-slate-950/80 backdrop-blur-xl">
+<header class="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/96">
 	<div class="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-4 lg:px-10">
 		<a href={`#${anchors.home}`} class="text-xl font-semibold uppercase tracking-[0.22em] text-white">
 			{t.brand}
 		</a>
 
 		<nav aria-label="Primary navigation" class="hidden items-center gap-7 md:flex">
-			<a href={`#${anchors.home}`} class="text-sm font-medium text-slate-300 transition hover:text-white">{t.nav.home}</a>
-			<a href={`#${anchors.services}`} class="text-sm font-medium text-slate-300 transition hover:text-white">{t.nav.services}</a>
-			<a href={`#${anchors.about}`} class="text-sm font-medium text-slate-300 transition hover:text-white">{t.nav.about}</a>
-			<a href={`#${anchors.machinery}`} class="text-sm font-medium text-slate-300 transition hover:text-white">{t.nav.machinery}</a>
-			<a href={`#${anchors.projects}`} class="text-sm font-medium text-slate-300 transition hover:text-white">{t.nav.projects}</a>
+			<a href={`#${anchors.home}`} class="text-sm font-medium uppercase tracking-[0.14em] text-slate-300 transition hover:text-white">{t.nav.home}</a>
+			<a href={`#${anchors.services}`} class="text-sm font-medium uppercase tracking-[0.14em] text-slate-300 transition hover:text-white">{t.nav.services}</a>
+			<a href={`#${anchors.about}`} class="text-sm font-medium uppercase tracking-[0.14em] text-slate-300 transition hover:text-white">{t.nav.about}</a>
+			<a href={`#${anchors.machinery}`} class="text-sm font-medium uppercase tracking-[0.14em] text-slate-300 transition hover:text-white">{t.nav.machinery}</a>
+			<a href={`#${anchors.projects}`} class="text-sm font-medium uppercase tracking-[0.14em] text-slate-300 transition hover:text-white">{t.nav.projects}</a>
 			<a
 				href={`#${anchors.contact}`}
-				class="inline-flex items-center rounded-full border border-orange-400/70 bg-orange-500/12 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_30px_-18px_rgba(249,115,22,0.8)] transition hover:border-orange-400 hover:bg-orange-500"
+				class="inline-flex items-center border border-orange-500 bg-orange-500 px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-slate-950 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] transition hover:bg-orange-400"
 			>
 				{t.cta}
 			</a>
@@ -33,7 +33,7 @@ const anchors = ui.anchors;
 				href={t.switchHref}
 				hreflang={lang === "es" ? "en" : "es"}
 				lang={lang === "es" ? "en" : "es"}
-				class="inline-flex h-11 min-w-11 items-center justify-center rounded-full border border-slate-700 bg-slate-900/80 px-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-200 transition hover:border-orange-400 hover:text-white"
+				class="inline-flex h-11 min-w-11 items-center justify-center border border-slate-700 bg-slate-900 px-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-200 transition hover:border-orange-400 hover:text-white"
 				aria-label={`Switch language to ${lang === "es" ? "English" : "Spanish"}`}
 			>
 				{t.switchLabel}
@@ -42,7 +42,7 @@ const anchors = ui.anchors;
 
 		<button
 			type="button"
-			class="inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-900/80 p-3 text-slate-200 transition hover:border-orange-400 hover:text-white md:hidden"
+			class="inline-flex items-center justify-center border border-slate-700 bg-slate-900 p-3 text-slate-200 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] transition hover:border-orange-400 hover:text-white md:hidden"
 			aria-expanded="false"
 			aria-controls="mobile-menu"
 			aria-label={t.mobileToggleOpen}
@@ -60,21 +60,21 @@ const anchors = ui.anchors;
 
 	<div
 		id="mobile-menu"
-		class="hidden border-t border-slate-800/80 bg-slate-950/95 px-6 py-5 md:hidden"
+		class="hidden border-t border-slate-800 bg-slate-950 px-6 py-5 md:hidden"
 		data-mobile-menu
 	>
 		<nav aria-label="Mobile navigation" class="flex flex-col gap-2">
-			<a href={`#${anchors.home}`} class="rounded-2xl px-4 py-3 text-sm font-medium text-slate-200 transition hover:bg-slate-900 hover:text-white" data-mobile-link>{t.nav.home}</a>
-			<a href={`#${anchors.services}`} class="rounded-2xl px-4 py-3 text-sm font-medium text-slate-200 transition hover:bg-slate-900 hover:text-white" data-mobile-link>{t.nav.services}</a>
-			<a href={`#${anchors.about}`} class="rounded-2xl px-4 py-3 text-sm font-medium text-slate-200 transition hover:bg-slate-900 hover:text-white" data-mobile-link>{t.nav.about}</a>
-			<a href={`#${anchors.machinery}`} class="rounded-2xl px-4 py-3 text-sm font-medium text-slate-200 transition hover:bg-slate-900 hover:text-white" data-mobile-link>{t.nav.machinery}</a>
-			<a href={`#${anchors.projects}`} class="rounded-2xl px-4 py-3 text-sm font-medium text-slate-200 transition hover:bg-slate-900 hover:text-white" data-mobile-link>{t.nav.projects}</a>
-			<a href={`#${anchors.contact}`} class="rounded-2xl px-4 py-3 text-sm font-medium text-slate-200 transition hover:bg-slate-900 hover:text-white" data-mobile-link>{t.nav.contact}</a>
+			<a href={`#${anchors.home}`} class="border border-slate-800 px-4 py-3 text-sm font-medium uppercase tracking-[0.14em] text-slate-200 transition hover:bg-slate-900 hover:text-white" data-mobile-link>{t.nav.home}</a>
+			<a href={`#${anchors.services}`} class="border border-slate-800 px-4 py-3 text-sm font-medium uppercase tracking-[0.14em] text-slate-200 transition hover:bg-slate-900 hover:text-white" data-mobile-link>{t.nav.services}</a>
+			<a href={`#${anchors.about}`} class="border border-slate-800 px-4 py-3 text-sm font-medium uppercase tracking-[0.14em] text-slate-200 transition hover:bg-slate-900 hover:text-white" data-mobile-link>{t.nav.about}</a>
+			<a href={`#${anchors.machinery}`} class="border border-slate-800 px-4 py-3 text-sm font-medium uppercase tracking-[0.14em] text-slate-200 transition hover:bg-slate-900 hover:text-white" data-mobile-link>{t.nav.machinery}</a>
+			<a href={`#${anchors.projects}`} class="border border-slate-800 px-4 py-3 text-sm font-medium uppercase tracking-[0.14em] text-slate-200 transition hover:bg-slate-900 hover:text-white" data-mobile-link>{t.nav.projects}</a>
+			<a href={`#${anchors.contact}`} class="border border-slate-800 px-4 py-3 text-sm font-medium uppercase tracking-[0.14em] text-slate-200 transition hover:bg-slate-900 hover:text-white" data-mobile-link>{t.nav.contact}</a>
 
 			<div class="mt-3 flex gap-3">
 				<a
 					href={`#${anchors.contact}`}
-					class="inline-flex flex-1 items-center justify-center rounded-full border border-orange-400/70 bg-orange-500 px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_-18px_rgba(249,115,22,0.8)] transition hover:bg-orange-400"
+					class="inline-flex flex-1 items-center justify-center border border-orange-500 bg-orange-500 px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-slate-950 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] transition hover:bg-orange-400"
 					data-mobile-link
 				>
 					{t.cta}
@@ -83,7 +83,7 @@ const anchors = ui.anchors;
 					href={t.switchHref}
 					hreflang={lang === "es" ? "en" : "es"}
 					lang={lang === "es" ? "en" : "es"}
-					class="inline-flex h-12 min-w-12 items-center justify-center rounded-full border border-slate-700 bg-slate-900/80 px-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-200 transition hover:border-orange-400 hover:text-white"
+					class="inline-flex h-12 min-w-12 items-center justify-center border border-slate-700 bg-slate-900 px-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-200 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] transition hover:border-orange-400 hover:text-white"
 					data-mobile-link
 				>
 					{t.switchLabel}
