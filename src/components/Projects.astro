@@ -1,83 +1,129 @@
 ---
-// 1. Organizamos los datos para que el HTML quede limpio
 const proyectos = [
-  {
-    id: "01",
-    titulo: "Dado progresivo #1",
-    desc: "Herramental desarrollado para operaciones repetitivas con enfoque en precisión y continuidad.",
-    image: "/assets/proyectos/dado-1.jpg", // Asegúrate de tener estas rutas
-    type: "image"
-  },
-  {
-    id: "02",
-    titulo: "Rodillos para formado de tubo",
-    desc: "Componentes diseñados para procesos de formado con control dimensional y desempeño continuo.",
-    image: "/assets/proyectos/rodillos.jpg",
-    type: "image"
-  },
-  {
-    id: "03",
-    titulo: "Piezas de Alta Precisión",
-    desc: "Manufactura de componentes especiales con acabados industriales de alta calidad.",
-    video: "/assets/proyectos/video-pieza.mp4", // Aquí va tu video
-    type: "video"
-  },
-  {
-    id: "04",
-    titulo: "Flechas Industriales",
-    desc: "Mecanizado de flechas y elementos rotativos para equipos y sistemas industriales.",
-    image: "/assets/proyectos/flechas.jpg",
-    type: "image"
-  },
-  {
-    id: "05",
-    titulo: "Dado progresivo #2",
-    desc: "Solución de herramental para procesos de estampado con enfoque en estabilidad operativa.",
-    image: "/assets/proyectos/dado-2.jpg",
-    type: "image"
-  }
+	{
+		id: "01",
+		titulo: "Dado progresivo #1",
+		categoria: "Herramental",
+		descripcion:
+			"Herramental desarrollado para operaciones repetitivas con enfoque en precision y continuidad.",
+		video: "/assets/proyectos/pieza-varias.mp4",
+		poster: "/assets/proyectos/dado-progresivo-1-poster.png",
+	},
+	{
+		id: "02",
+		titulo: "Rodillos para formado de tubo",
+		categoria: "Formado industrial",
+		descripcion:
+			"Componentes disenados para procesos de formado con control dimensional y desempeno continuo.",
+		image: "/assets/proyectos/rodillos-formado.jpg",
+	},
+	{
+		id: "03",
+		titulo: "Piezas varias",
+		categoria: "Manufactura",
+		descripcion:
+			"Manufactura de componentes especiales para diferentes requerimientos de produccion industrial.",
+		image: "/assets/proyectos/piezas-varias.jpeg",
+	},
+	{
+		id: "04",
+		titulo: "Flechas",
+		categoria: "Torneado CNC",
+		descripcion:
+			"Mecanizado de flechas y elementos rotativos para equipos y sistemas industriales.",
+		image: "/assets/proyectos/flechas.jpg",
+	},
+	{
+		id: "05",
+		titulo: "Dado progresivo #2",
+		categoria: "Estampado",
+		descripcion:
+			"Solucion de herramental para procesos de estampado con enfoque en estabilidad operativa.",
+		image: "/assets/proyectos/dado-progresivo-2.jpeg",
+	},
 ];
 ---
 
-<section id="proyectos" class="py-24 bg-slate-50">
-  <div class="max-w-7xl mx-auto px-6">
-    <p class="text-sm font-bold uppercase tracking-widest text-orange-600">Portafolio</p>
-    <h2 class="mt-2 text-4xl font-bold text-slate-950">Casos de Éxito</h2>
-    <p class="mt-4 text-lg text-slate-600 max-w-2xl">
-      Ejemplos de piezas y herramentales fabricados con los más altos estándares de calidad en Mexicali.
-    </p>
+<section id="proyectos" class="bg-slate-50">
+	<div class="section-shell">
+		<p class="eyebrow">Proyectos</p>
+		<h2 class="section-title">Proyectos</h2>
+		<p class="section-copy">
+			Ejemplos de trabajo para distintas aplicaciones industriales.
+		</p>
 
-    <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {proyectos.map((proy) => (
-        <article class="group overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all hover:shadow-xl">
-          <div class="aspect-video overflow-hidden bg-slate-200">
-            {proy.type === "video" ? (
-              <video 
-                src={proy.video} 
-                autoplay 
-                muted 
-                loop 
-                playsinline 
-                class="h-full w-full object-cover"
-              />
-            ) : (
-              <img 
-                src={proy.image} 
-                alt={proy.titulo} 
-                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-            )}
-          </div>
-          
-          <div class="p-6">
-            <span class="text-xs font-bold uppercase text-orange-600">Proyecto {proy.id}</span>
-            <h3 class="mt-2 text-xl font-bold text-slate-950">{proy.titulo}</h3>
-            <p class="mt-3 text-sm leading-relaxed text-slate-600">
-              {proy.desc}
-            </p>
-          </div>
-        </article>
-      ))}
-    </div>
-  </div>
+		<div class="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+			{
+				proyectos.map((proyecto) => (
+					<article class="panel-light relative overflow-hidden p-0">
+						<div class="absolute inset-x-0 top-0 h-1 bg-orange-500/80"></div>
+
+						{proyecto.video ? (
+							<div class="group relative aspect-[16/10] overflow-hidden border-b border-slate-200 bg-slate-200">
+								<img
+									src={proyecto.poster}
+									alt={proyecto.titulo}
+									loading="lazy"
+									class="h-full w-full object-cover transition duration-300 group-hover:scale-[1.02] group-hover:opacity-0"
+									onerror="this.parentElement?.classList.add('hidden'); this.closest('article')?.querySelector('[data-project-fallback]')?.classList.remove('hidden');"
+								/>
+								<video
+									src={proyecto.video}
+									poster={proyecto.poster}
+									autoplay
+									muted
+									loop
+									playsinline
+									class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-0 transition duration-300 group-hover:opacity-100"
+									onerror="this.parentElement?.classList.add('hidden'); this.closest('article')?.querySelector('[data-project-fallback]')?.classList.remove('hidden');"
+								></video>
+							</div>
+						) : proyecto.image ? (
+							<div class="aspect-[16/10] overflow-hidden border-b border-slate-200 bg-slate-200">
+								<img
+									src={proyecto.image}
+									alt={proyecto.titulo}
+									loading="lazy"
+									class="h-full w-full object-cover"
+									onerror="this.parentElement?.classList.add('hidden'); this.closest('article')?.querySelector('[data-project-fallback]')?.classList.remove('hidden');"
+								/>
+							</div>
+						) : null}
+
+						<div
+							class:list={[
+								"project-media hidden aspect-[16/10] items-end overflow-hidden border-b border-slate-200 bg-[linear-gradient(135deg,#0f172a,#1e293b_58%,#f97316_180%)] p-6 text-white",
+								!proyecto.image && "flex",
+							]}
+							data-project-fallback
+						>
+							<div>
+								<p class="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-orange-400">
+									Proyecto {proyecto.id}
+								</p>
+								<p class="mt-3 max-w-xs text-xl font-semibold leading-tight">
+									{proyecto.titulo}
+								</p>
+							</div>
+						</div>
+
+						<div class="p-7 sm:p-8">
+							<p class="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-slate-500">
+								Proyecto {proyecto.id}
+							</p>
+							<h3 class="mt-5 text-2xl font-semibold tracking-tight text-slate-950">
+								{proyecto.titulo}
+							</h3>
+							<p class="mt-3 text-sm font-medium uppercase tracking-[0.18em] text-orange-600">
+								{proyecto.categoria}
+							</p>
+							<p class="mt-5 text-sm leading-7 text-slate-600">
+								{proyecto.descripcion}
+							</p>
+						</div>
+					</article>
+				))
+			}
+		</div>
+	</div>
 </section>
